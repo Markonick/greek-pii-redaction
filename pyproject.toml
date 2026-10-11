@@ -1,0 +1,35 @@
+[project]
+name = "greek-pii-redaction"
+version = "0.1.0"
+description = "PII detection + true PDF redaction for Greek documents (Presidio + PyMuPDF). Offline, deterministic."
+# Pinned to <3.13: the ML stack (spaCy / Presidio / numpy) ships no cp314 wheels.
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "presidio-analyzer>=2.2",
+    "presidio-anonymizer>=2.2",
+    "pymupdf>=1.24",
+    "spacy>=3.8",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.8.0",
+    "mypy>=1.13.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+# `redaction/` is a top-level package in this repo; put the repo root on the path so
+# `from redaction... import ...` resolves without an install step.
+pythonpath = ["."]

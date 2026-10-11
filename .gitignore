@@ -1,0 +1,18 @@
+# deps / caches
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# secrets (none are needed, but never commit one)
+.env
+.env.local
+
+# redaction I/O — NEVER commit real documents or anything derived from them.
+# Automated redaction is not perfect; outputs must be human-verified and stay local.
+redacted/
+quarantine/
+real/
